@@ -60,3 +60,86 @@ Functionality:
 * List shards
 * Display shard recovery information
 * New client configuration options: user, password, path, protocol, TLS verification
+Sure, let's go through the README and outline the step-by-step process for deploying the `vulcanizer` project.
+
+### Step-by-Step Deployment Process
+
+1. **Install Go**:
+   - Ensure you have Go installed on your machine. You can download and install it from [golang.org](https://golang.org/dl/).
+
+2. **Get the Project**:
+   - Use the `go get` command to download the `vulcanizer` project into your `$GOPATH`.
+   ```sh
+   go get github.com/github/vulcanizer
+   ```
+
+3. **Navigate to the Project Directory**:
+   - Change directory to the project directory within your `$GOPATH`.
+   ```sh
+   cd $GOPATH/src/github.com/github/vulcanizer
+   ```
+
+4. **Bootstrap the Project**:
+   - Run the bootstrap script to set up the project.
+   ```sh
+   ./script/bootstrap
+   ```
+
+5. **Build the Project**:
+   - Compile the project and install the `vulcanizer` binary to `$GOPATH/bin`.
+   ```sh
+   ./script/build
+   ```
+
+6. **Run Tests**:
+   - Execute the test suite to ensure everything is set up correctly.
+   ```sh
+   ./script/test
+   ```
+
+7. **Configuration**:
+   - Create a configuration file at `~/.vulcanizer.yaml` with your cluster information.
+   ```yml
+   local:
+     host: localhost
+     port: 9200
+   staging:
+     host: 10.10.2.1
+     port: 9201
+   production:
+     host: 10.10.1.1
+     port: 9202
+   ```
+
+8. **Using the Command Line Application**:
+   - You can now use the `vulcanizer` binary to manage your Elasticsearch cluster. Here are some example commands:
+   ```sh
+   # Query for cluster health on the "local" cluster
+   vulcanizer health --cluster local
+
+   # Query for nodes against the node 10.10.2.1 and port 9202
+   vulcanizer nodes --host 10.10.2.1 --port 9202
+   ```
+
+### Additional Information
+
+- **Supported Elasticsearch Versions**:
+  - Integration tests are set up to run against the latest v5 and v6 versions of Elasticsearch.
+
+- **Development**:
+  - To compile the project and install the `vulcanizer` binary:
+    ```sh
+    ./script/build
+    ```
+  - To run the tests:
+    ```sh
+    ./script/test
+    ```
+
+- **Contributing**:
+  - This repository is open to contributions. Please see the CONTRIBUTING.md and CODE_OF_CONDUCT.md for more details.
+
+- **License**:
+  - This project is released under the MIT LICENSE.
+
+By following these steps, you should be able to deploy and use the `vulcanizer` project to manage your Elasticsearch cluster. If you have any specific questions or run into issues, feel free to ask!
